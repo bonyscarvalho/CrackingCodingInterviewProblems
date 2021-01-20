@@ -5,9 +5,47 @@ import java.util.Map;
 
 public class PermutationPalindrome {
     public static void main(String args[]){
-        String input = "Jerry";
-        System.out.println("The Result of String being Palindrome Permutation is " + isPalindromePermutationApproac2(input));
+        String input = "Tact Coa";
+        System.out.println("The Result of String being Palindrome Permutation is " + isPalindromePermutationApproac3(input));
     }
+
+    private static Boolean isPalindromePermutationApproac3(String input) {
+        if(input.length() == 0) return true;
+        int bitVector = createBitVector(input);
+
+        return (bitVector == 0) || checkExactlyOneBitRemaining(bitVector);
+    }
+
+    private static int createBitVector(String input) {
+        int bitValue = 0;
+        for(char ch : input.toCharArray()){
+            int chIndex = getNumericValueForChar(ch);
+            bitValue = bitVectorCal(chIndex, bitValue);
+        }
+        return bitValue;
+    }
+
+    private static int bitVectorCal(int chIndex, int bitValue) {
+        if(chIndex < 0) return  bitValue;
+
+        int mask = 1 << chIndex;    //create mask for char value
+
+        if((bitValue & mask) == 0){     //char is new and not equal to any previous
+            bitValue |= mask;       
+        }else{                          //char is already there
+            bitValue &= (~mask);        // minus the older char from here and get back the org value
+        }                               //aba will return value of b back from here.
+        return bitValue;
+    }
+    
+    //it will be zero. as if you have 2 bits (110 - 1 = 101) & 110 the value will be greater then zero 
+    // but if you just have 1 bit (100 - 1 = 011 & 100 it will be zero as only 1 bit)
+    private static boolean checkExactlyOneBitRemaining(int bitVector) {
+        return (bitVector & (bitVector - 1)) == 0;
+    }
+
+
+
     //this approach is same as previous only using array which is quite faster then map.
     private static Boolean isPalindromePermutationApproac2(String input) {
         if(input.length() == 0) return true;
