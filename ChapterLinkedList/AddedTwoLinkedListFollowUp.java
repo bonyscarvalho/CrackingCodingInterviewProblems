@@ -49,6 +49,7 @@ public class SumListNodeFollowUp {
         //display(resultNode.partialSum);
     }
 
+    //we use a wrapper class so as we can send both Node and carry element back to the previous node in the recursive call
     private static WrapperSum addTwoLinkedListNodeRecursiveApproach(Node inputNode1, Node inputNode2) {
         if(inputNode1 == null && inputNode2 == null){
             WrapperSum sum = new WrapperSum();
@@ -94,6 +95,7 @@ public class SumListNodeFollowUp {
         return len;
     }
 
+    //we use stack to add the values in and get it from pop.
     private static Node addTwoLinkedListNodeIterativeApproach(Node inputNode1, Node inputNode2) {
         if(inputNode1 == null) return inputNode2;
         if(inputNode2 == null) return inputNode1;
