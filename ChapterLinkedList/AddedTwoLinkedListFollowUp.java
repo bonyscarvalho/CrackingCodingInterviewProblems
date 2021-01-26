@@ -31,13 +31,13 @@ public class SumListNodeFollowUp {
         display(inputNode1);
         System.out.println("Orginal Linked List Node 2");
         display(inputNode2);
-//        int len1 = lenOfNode(inputNode1);
-//        int len2 = lenOfNode(inputNode2);
-//        if(len1 < len2){
-//            inputNode1 = paddListWithZero(inputNode1, len2 - len1);
-//        }else if(len1 > len2){
-//            inputNode2 = paddListWithZero(inputNode2, len1 - len2);
-//        }
+        int len1 = lenOfNode(inputNode1);
+        int len2 = lenOfNode(inputNode2);
+        if(len1 < len2){
+            inputNode1 = paddListWithZero(inputNode1, len2 - len1);
+        }else if(len1 > len2){
+            inputNode2 = paddListWithZero(inputNode2, len1 - len2);
+        }
 //        WrapperSum resultNode = addTwoLinkedListNodeRecursiveApproach(inputNode1, inputNode2);
 //
 //        if(resultNode.carry == 1){
