@@ -37,21 +37,28 @@ public class RabinTrapSubStringSearch {
 
             }else{
                 double charAtLastIndex = s.charAt(i + patternLen - 1);
-                System.out.println("Value at charAtLastIndex: " + charAtLastIndex + " for char " + s.charAt(i + patternLen - 1));
+                //System.out.println("Value at charAtLastIndex: " + charAtLastIndex + " for char " + s.charAt(i + patternLen - 1));
                 subStringHashValue = (subStringHashValue - s.charAt(i - 1)) / primeNumber;
-                System.out.println("subStringHashValue: " + subStringHashValue + " for char " + s.charAt(i + patternLen - 1));
+                //System.out.println("subStringHashValue: " + subStringHashValue + " for char " + s.charAt(i + patternLen - 1));
 
                 //System.out.println("Divide Value "+ (subStringHashValue - valueAtFirstIdx) / primeNumber);
                 lastIndexValue = Math.pow(primeNumber, patternLen - 1) * charAtLastIndex;
-                System.out.println("lastIndexValue: " + lastIndexValue + " for char " + s.charAt(i + patternLen - 1));
+                //System.out.println("lastIndexValue: " + lastIndexValue + " for char " + s.charAt(i + patternLen - 1));
 
                 //System.out.println("Last Index Value "+ lastIndexValue);
                 //subStringHashValue = ((subStringHashValue - valueAtFirstIdx) / primeNumber) + ( Math.pow(primeNumber, patternLen-1) * charAtLastIndex );
                 subStringHashValue = subStringHashValue + lastIndexValue;
-                System.out.println("Final subStringHashValue Value "+ subStringHashValue + " for char " + s.charAt(i + patternLen - 1));
+                //System.out.println("Final subStringHashValue Value "+ subStringHashValue + " for char " + s.charAt(i + patternLen - 1));
             }
             if(patternHash == subStringHashValue){
-                return i;
+                int j = 0;
+                for(j = 0; j < patternLen; j++){
+                    if(pattern.charAt(j) != s.charAt(i + j)){
+                        break;
+                    }
+                }
+                if(j == patternLen) return i;
+
             }
             i++;
         }
@@ -69,7 +76,6 @@ public class RabinTrapSubStringSearch {
         for(int i = 0; i < len; i++){
             int valueOfChar = pattern.charAt(i) ;
             valueOfHash += Math.pow(primeNumber, i) * valueOfChar;
-            System.out.println("So Far Hash Value for char " + pattern.charAt(i) + " is " + valueOfChar + " and " + valueOfHash);
         }
 
         return valueOfHash;
