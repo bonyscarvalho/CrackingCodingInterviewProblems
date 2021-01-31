@@ -28,14 +28,14 @@ public class StackMin {
 
     private static int popValue() {
         int popedVal = minValueStack.pop();
-        if(popedVal == minValue()){
+        if(popedVal == minValue()){     //keep check to see if min Value is Popped
             minValueStack.pop();
         }
         return popedVal;
     }
 
     private static void pushValue(int val) {
-        if(val <= minValue()){
+        if(val <= minValue()){      // check if you found a new Min Value so that it can be pushed in Min stack
             minValueStack.push(val);
         }
         mainStack.push(val);
