@@ -67,11 +67,37 @@ public class CheckSubtree {
         System.out.println("Traversing t2");
         tree.traverseInOrder(t2);
 
-        System.out.println("SubTree of Tree is: " + checkSubTree(t1, t2));
+      //  System.out.println("SubTree of Tree is: " + checkSubTreeApproach1(t1, t2));
+
+        System.out.println("String Builder Approach resukt is "+ containsTreeInString(t1, t2));
 
     }
 
-    private static Boolean checkSubTree(Node t1, Node t2) {
+    private static Boolean containsTreeInString(Node t1, Node t2) {
+        StringBuilder tree1 = new StringBuilder();
+        StringBuilder tree2 = new StringBuilder();
+
+        getStringOfTree(t1, tree1);
+        getStringOfTree(t2, tree2);
+
+        // -1 will indicates that it is not available in root string.
+        // As we are comparing the whole smaller tree string in root tree.
+        return tree1.indexOf(tree2.toString()) != -1; 
+
+    }
+
+    private static void getStringOfTree(Node node, StringBuilder sb) {
+        if(node == null){
+            sb.append("X");
+            return;
+        }
+        sb.append(node.value + " ");
+        getStringOfTree(node.left, sb);
+        getStringOfTree(node.right, sb);
+
+    }
+
+    private static Boolean checkSubTreeApproach1(Node t1, Node t2) {
         if(t2 == null){
             return true;
         }
