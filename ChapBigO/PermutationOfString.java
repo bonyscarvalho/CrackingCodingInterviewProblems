@@ -11,7 +11,7 @@ public class PermutationOfString {
         }else{
             for(int i = 0; i < str.length(); i++){
                 String remaining = str.substring(0, i) + str.substring(i + 1);      // for i = 0, remaining is BC and prefix is A as we add str.charAt(i), 
-// for i = 0 we have C remaining and for i= 1 be have B remaining which creates different combinations
+// for i = 2 we have C remaining and for i= 1 be have B remaining which creates different combinations
                 permutation(remaining, prefix + str.charAt(i));
             }
         }
