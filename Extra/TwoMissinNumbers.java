@@ -8,13 +8,13 @@ public class TwoMissinNumbers {
     public static void main(String args[]) {
         int[] arr = {1, 3, 4, 6};
 
-        int[] missingNumbers = sortApproach(arr);
+        Integer[] missingNumbers = sortApproach(arr);
         System.out.println("Missing Numbers are: " + missingNumbers);
     }
 
-    private static int[] sortApproach(int[] arr){
+    private static Integer[] sortApproach(int[] arr){
         int len = arr.length;
-        if(len <= 1) return new int[2];
+        if(len <= 1) return new Integer[2];
 
         Arrays.sort(arr);
 
@@ -26,8 +26,17 @@ public class TwoMissinNumbers {
             }
         }
         System.out.println("Print List: " +res);
-        int[] resArray = new int[2];
-        res.toArray();
+
+        Integer[] resArray = res.toArray(new Integer[res.size()]);
+
+//        Integer[] testArray = new Integer[2];
+//        testArray = res.toArray(testArray);
+
+        //Object[] objArray = res.toArray();
+
+        for(Object i : resArray){
+            System.out.println("Res Array "+ i);
+        }
 
         return resArray;
     }
