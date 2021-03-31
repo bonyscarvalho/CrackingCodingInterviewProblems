@@ -1,9 +1,6 @@
 package Algorithms;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class TrieWordValidation {
     private static TrieNode root;
@@ -26,7 +23,7 @@ public class TrieWordValidation {
 
     //Space: O(n.L.Constant(Map)) Query/Insert/Delete/Update: O(L) length of Nodes
     public static void main(String args[]) {
-        String [] words = {"gayle", "gary", "geena", "alex", "andy", "app", "application"};
+        String [] words = {"gayle", "gary", "geena", "alex", "andy", "app", "application", "xyz"};
         TrieWordValidation trieWordValidation= new TrieWordValidation(words);
 
         for (String word : words){
@@ -37,18 +34,59 @@ public class TrieWordValidation {
 //        for (Character key : wordKeys){
 //            System.out.println("Key: " + key+" Prefix: "+root.childrens.get(key));
 //        }
-        List<String> prefixedWords = getWordsFromPrefix("a");
+        System.out.println("Remove: " + removeWord("xyz"));
+
+        List<String> prefixedWords = getWordsFromPrefix("xyz");
         System.out.println(prefixedWords);
-
-        System.out.println(deleteWord("application"));
-
-        List<String> deleteTest = getWordsFromPrefix("application");
-        System.out.println(deleteTest);
-        updateWord("gary","bary");
-
-        List<String> updateTest = getWordsFromPrefix("gary");
-        System.out.println(updateTest);
+//
+//        System.out.println(deleteWord("application"));
+//
+//        List<String> deleteTest = getWordsFromPrefix("application");
+//        System.out.println(deleteTest);
+//        updateWord("gary","bary");
+//
+//        List<String> updateTest = getWordsFromPrefix("gary");
+//        System.out.println(updateTest);
     }
+
+    private static boolean removeWord(String word) {
+        Stack<TrieNode> stack = new Stack<TrieNode>();
+        TrieNode n = root;
+        stack.add(n);
+
+        for (char c : word.toCharArray()) {
+            n = n.childrens.get(c);
+           // n = n.next[c];
+            if (n == null)//word not found
+            {
+                return false;
+            }
+            stack.add(n);
+        }
+
+        if (!n.isWord){ //word not found
+            return false;
+        }
+
+        n.isWord = false;
+
+        if (!n.childrens.isEmpty()) {   //word is a prefix
+            return true;
+        }
+
+        //word is not a prefix
+        stack.pop();
+        n = stack.pop();
+        while (!stack.isEmpty() && n.numOfWordsCount == 1) {
+            n.childrens.clear();
+            if (n.isWord) {
+                return true;
+            }
+            n = stack.pop();
+        }
+        return true;
+    }//remove
+
 
     private static void updateWord(String oldWord, String newWord){
         deleteWord(oldWord);
@@ -108,6 +146,7 @@ public class TrieWordValidation {
             if(charIdx == word.length() - 1){
                 currNode.isWord = true;
             }
+            currNode.numOfWordsCount++;
         }
     }
 }
