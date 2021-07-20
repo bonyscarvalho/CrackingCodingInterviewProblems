@@ -1,4 +1,4 @@
-package ChapterSortingAndSearching;
+package SortingAlgo;
 
 import java.util.Arrays;
 
