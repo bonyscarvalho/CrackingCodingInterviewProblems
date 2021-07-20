@@ -55,5 +55,54 @@ public class QuickSort {
         input[left] = input[right];
         input[right] = temp;
     }
+    
+    /*
+    public static int[] quickSort(int[] array) {
+    // Write your code here.
+    quickSort(array, 0, array.length - 1);
+		return array;
+  }
+	
+	public static void quickSort(int[] array, int startIdx, int endIdx) {
+		if(startIdx >= endIdx){
+			return;
+		}
+		
+		int pivotIdx = startIdx;
+		int leftIdx = startIdx + 1;
+		int rightIdx = endIdx;
+		
+		while(leftIdx <= rightIdx){
+			if((array[leftIdx] > array[pivotIdx]) && (array[rightIdx] < array[pivotIdx])){
+				swap(leftIdx, rightIdx, array);
+			}
+			
+			if(array[leftIdx] <= array[pivotIdx]){
+				leftIdx++;
+			}
+			if(array[rightIdx] >= array[pivotIdx]){
+				rightIdx--;
+			}
+		}
+		swap(pivotIdx, rightIdx, array);
+		
+		//Reduce the space complexity from N to logN as you are sorting the smaller side 1st 
+		//in tail recursion. Which will be execute fast and less space then other way round
+		boolean leftSideLesser = (rightIdx - 1 - startIdx) < (endIdx - rightIdx + 1);
+		if(leftSideLesser){
+			quickSort(array, startIdx, rightIdx - 1);
+			quickSort(array, rightIdx + 1, endIdx);
+		}else{
+			quickSort(array, rightIdx + 1, endIdx);
+			quickSort(array, startIdx, rightIdx - 1);
+		}
+	}
+	
+	private static void swap(int first, int second, int[] input) {
+        int temp  = input[first];
+        input[first] = input[second];
+        input[second] = temp;
+    }
+    */
 
 }
