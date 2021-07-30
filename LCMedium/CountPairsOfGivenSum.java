@@ -29,6 +29,7 @@ public class CountPairsOfGivenSum {
 
             if((sum - num) == num){
                 totalSumCount--;    //as if both digits are same count will be reduced by 1
+                //consider arr-> [1] and sum as 2 the output should be 0
             }
         }
 
